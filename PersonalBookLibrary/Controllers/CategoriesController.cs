@@ -5,11 +5,11 @@ namespace PersonalBookLibrary.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthorsController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
-        private readonly IAuthorService _service;
+        private readonly ICategoryService _service;
 
-        public AuthorsController(IAuthorService service)
+        public CategoriesController(ICategoryService service)
         {
             _service = service;
         }
@@ -17,9 +17,9 @@ namespace PersonalBookLibrary.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var authors = await _service.GetAllAsync();
+            var categories = await _service.GetAllAsync();
 
-            return Ok(authors);
+            return Ok(categories);
         }
     }
 }

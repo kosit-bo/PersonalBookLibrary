@@ -13,12 +13,24 @@ namespace PersonalBookLibrary.Repositories
             _context = context;
         }
 
-        public async Task<List<Book>> GetAllAsync()
+        public async Task<List<Book>> GetAllAsync(Guid? categoryId, Guid? authorId)
         {
-            return await _context.Books
+            var query = _context.Books
                 .Include(b => b.Author)
                 .Include(b => b.Category)
-                .ToListAsync();
+                .AsQueryable();
+
+            if (categoryId.HasValue)
+            {
+                query = query.Where(b => b.CategoryId == categoryId.Value);
+            }
+
+            if (authorId.HasValue)
+            {
+                query = query.Where(b => b.AuthorId == authorId.Value);
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<Book?> GetByIdAsync(Guid id)

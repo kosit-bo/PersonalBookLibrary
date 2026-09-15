@@ -2,8 +2,8 @@
 
 namespace PersonalBookLibrary.Services
 {
-    public interface IAuthorService
+    public interface ICategoryService
     {
-        Task<List<Author>> GetAllAsync();
+        Task<List<Category>> GetAllAsync();
     }
 }
