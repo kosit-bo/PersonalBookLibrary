@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PersonalBookLibrary.Data;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace PersonalBookLibrary.Controllers
 {
@@ -8,10 +12,14 @@ namespace PersonalBookLibrary.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public AuthController(ApplicationDbContext context)
+        public AuthController(
+            ApplicationDbContext context,
+            IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         [HttpPost("login")]
@@ -41,10 +49,38 @@ namespace PersonalBookLibrary.Controllers
                 });
             }
 
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Username)
+            };
+
+            var key = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(
+                    _configuration["Jwt:SecretKey"]!
+                )
+            );
+
+            var credentials = new SigningCredentials(
+                key,
+                SecurityAlgorithms.HmacSha256
+            );
+
+            var expires = DateTime.UtcNow.AddHours(1);
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: expires,
+                signingCredentials: credentials
+            );
+
+            var tokenString = new JwtSecurityTokenHandler()
+                .WriteToken(token);
+
             return Ok(new
             {
-                message = "Login successful",
-                userId = user.Id
+                token = tokenString,
+                expires = expires
             });
         }
     }

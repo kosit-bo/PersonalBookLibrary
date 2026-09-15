@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PersonalBookLibrary.Models;
 using PersonalBookLibrary.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PersonalBookLibrary.Controllers
 {
@@ -54,6 +55,7 @@ namespace PersonalBookLibrary.Controllers
 
         // POST: /api/books
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(Book book)
         {
             try
@@ -77,6 +79,7 @@ namespace PersonalBookLibrary.Controllers
 
         // DELETE: /api/books/{id}
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(Guid id)
         {
             var deleted = await _service.DeleteAsync(id);
