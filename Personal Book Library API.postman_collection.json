@@ -1,0 +1,233 @@
+{
+  "info": {
+    "_postman_id": "87091d75-3dd9-4b77-ba7a-c6d4dbefd11c",
+    "name": "Personal Book Library API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58255015"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"1234\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7021/api/auth/login",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7021",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7021/api/books",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7021",
+          "path": [
+            "api",
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Book By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7021/api/books/106f6650-440a-4a33-aa25-58b1f86515b5",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7021",
+          "path": [
+            "api",
+            "books",
+            "106f6650-440a-4a33-aa25-58b1f86515b5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Authors",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7021/api/authors",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7021",
+          "path": [
+            "api",
+            "authors"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7021/api/categories",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7021",
+          "path": [
+            "api",
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter By Author",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7021/api/books?authorId=8E29A7C0-92EF-4AF7-A840-A01895461707",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7021",
+          "path": [
+            "api",
+            "books"
+          ],
+          "query": [
+            {
+              "key": "authorId",
+              "value": "8E29A7C0-92EF-4AF7-A840-A01895461707"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter By Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7021/api/books?categoryId=EC398A0C-32F7-4FC0-8ED9-82E98991071F",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7021",
+          "path": [
+            "api",
+            "books"
+          ],
+          "query": [
+            {
+              "key": "categoryId",
+              "value": "EC398A0C-32F7-4FC0-8ED9-82E98991071F"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add BookAdd Book",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjY0ZjVmNGViLTE4YzAtNDJjMi05ZTk0LThjZjRhOGNiYjJkOCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImV4cCI6MTc4OTU0MTI1MH0.oQ3H-U5PXHMW0JX3vaihtFhtYSvBzHELp422s_ou62M",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Test Book Postman 2\",\r\n  \"authorId\": \"8E29A7C0-92EF-4AF7-A840-A01895461707\",\r\n  \"categoryId\": \"DFEF398A-C1A3-4B10-B6A4-9FC7FEF79C71\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7021/api/books",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7021",
+          "path": [
+            "api",
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Book",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7021/api/books/{id}",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7021",
+          "path": [
+            "api",
+            "books",
+            "{id}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
